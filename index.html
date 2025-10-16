@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Wedding Videography</title>
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#portfolio">PORTFOLIO</a></li>
+                <li><a href="faq.html">FAQ</a></li> 
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero-section">
+        <video id="hero-video" autoplay loop muted playsinline>
+            <source src="assets/video/herovideo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <a href="#contact" class="book-now-btn">Book Now</a>
+        </div>
+    </section>
+    
+    <section class="collage-section">
+        <img src="assets/img/QuoteBuffer.jpg" alt="A collage image with a quote." class="collage-image" loading="lazy">
+        <div class="quote-overlay">
+            <p>"Truly captured our wedding day the way we remembered it. We will cherish this forever!"</p>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio-section">
+        <div class="video-grid">
+            
+            <div class="grid-item half-width" data-video="assets/video/Ashley_Seth.mp4">
+                <img src="assets/covers/Ashley & Seth cover.png" alt="Ashley & Seth" class="thumbnail" loading="lazy">
+                <div class="play-icon"><i class="fas fa-play"></i></div>
+            </div>
+            
+            <div class="grid-item half-width" data-video="assets/video/Brittney_Dennis.mp4">
+                <img src="assets/covers/Brittney & Dennis cover.png" alt="Brittney & Dennis" class="thumbnail" loading="lazy">
+                 <div class="play-icon"><i class="fas fa-play"></i></div>
+            </div>
+            
+            <div class="grid-item quarter-width" data-video="assets/video/Janessa_Sean.mp4">
+                <img src="assets/covers/Janessa & Sean cover.png" alt="Janessa & Sean" class="thumbnail" loading="lazy">
+                 <div class="play-icon"><i class="fas fa-play"></i></div>
+            </div>
+            
+            <div class="grid-item quarter-width" data-video="assets/video/Jenny_Arin.mp4">
+                <img src="assets/covers/Jenny & Arin cover.png" alt="Jenny & Arin" class="thumbnail" loading="lazy">
+                 <div class="play-icon"><i class="fas fa-play"></i></div>
+            </div>
+            
+            <div class="grid-item quarter-width" data-video="assets/video/Justin_Vanessa.mp4">
+                <img src="assets/covers/Justin & Vanessa cover.png" alt="Justin & Vanessa" class="thumbnail" loading="lazy">
+                 <div class="play-icon"><i class="fas fa-play"></i></div>
+            </div>
+
+             <div class="grid-item full-width" data-video="assets/video/Mike_Leah.mp4">
+                <img src="assets/covers/Mike & Leah cover.png" alt="Mike & Leah" class="thumbnail" loading="lazy">
+                 <div class="play-icon"><i class="fas fa-play"></i></div>
+            </div>
+            
+            <div class="grid-item half-width" data-video="assets/video/Nicole_Chris.mp4">
+                <img src="assets/covers/Nicole & Chris cover.png" alt="Nicole & Chris" class="thumbnail" loading="lazy">
+                 <div class="play-icon"><i class="fas fa-play"></i></div>
+            </div>
+
+            <div class="grid-item half-width" data-video="assets/video/Sarah_Eric.mp4">
+                <img src="assets/covers/Sarah & Eric cover.png" alt="Nicole & Chris" class="thumbnail" loading="lazy">
+                 <div class="play-icon"><i class="fas fa-play"></i></div>
+            </div>
+            
+            <div class="grid-item half-width" data-video="assets/video/Olivia_Patrick.mp4">
+                <img src="assets/covers/Olivia & Patrick cover.png" alt="Olivia & Patrick" class="thumbnail" loading="lazy">
+                 <div class="play-icon"><i class="fas fa-play"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>About me</h2>
+                <p>After seven years of working in the industry, seeing couples faces light up after seeing their love story told on the big screen never gets old. My goal is to capture real, unfiltered moments that tell your one of a kind love story. I want to know it all; from the awkward first dates to the proposal. This is a movie starring you, so don’t spare me any details; I want to hear it all! The chuckles between you two in-between photos, the tears of joy uncontrollably rolling down your cheek; it’s these moments that tell an authentic love story.</p>
+            </div>
+            <div class="about-image-container">
+                <img src="assets/img/about-pic.jpg" alt="Self portrait" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="contact-form-container">
+            <div class="contact-text-and-form">
+                <div class="contact-info-text">
+                    <p>Tell me about your big day and we'll work together to tell your one of a kind love story. You'll hear back from me within a day of initial contact.</p>
+                </div>
+                <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="firstName">First Name*</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="Enter Your First Name" required>
+                        </div>
+                         <div class="form-group half">
+                            <label for="lastName">Last Name*</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Enter Your Last Name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                         <div class="form-group half">
+                            <label for="email">Email*</label>
+                            <input type="email" id="email" name="_replyto" placeholder="Enter Your Email Address" required>
+                        </div>
+                         <div class="form-group half">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="_subject" placeholder="Enter Your Enter Your Subject">
+                        </div>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell me about your big day!"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="send-btn">Send</button>
+                    <input type="hidden" name="_next" value="/thank-you-page.html" />
+                </form>
+            </div>
+            
+            <div class="contact-image-overlay">
+                <img src="assets/img/contact.avif" alt="Jenny & Arin" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <a href="#home" class="back-to-top">Back to Top</a>
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </footer>
+
+    <div id="videoModal" class="modal">
+        <span class="close-btn">&times;</span>
+        <div class="modal-content">
+            <video id="modalVideo" controls playsinline></video>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
