@@ -1,59 +1,84 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Fullscreen banner video
+    
     const heroVideo = document.getElementById('hero-video');
     
     if (heroVideo) {
-        heroVideo.play().catch(error => {
-            console.warn("Hero video autoplay failed initially:", error.message);
-        });
+        const source = heroVideo.querySelector('source');
+        const videoSrc = source ? source.src : null;
+
+        if (videoSrc && videoSrc.includes('.m3u8')) {
+            // Check if hls.js is supported
+            if (window.Hls && Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(videoSrc);
+                hls.attachMedia(heroVideo);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    heroVideo.play().catch(error => {
+                        console.warn("Hero HLS video autoplay failed initially:", error.message);
+                    });
+                });
+            } else if (heroVideo.canPlayType('application/vnd.apple.mpegurl')) {
+                // native HLS playback
+                heroVideo.src = videoSrc;
+                heroVideo.play().catch(error => {
+                    console.warn("Hero native HLS video autoplay failed initially:", error.message);
+                });
+            } else {
+                console.error("HLS is not supported on this browser.");
+            }
+        } else if (heroVideo) {
+            // fallback for non-HLS video
+             heroVideo.play().catch(error => {
+                console.warn("Hero MP4 video autoplay failed initially:", error.message);
+            });
+        }
     }
 
-    // Portfolio playlist logic
-    
+
     const modal = document.getElementById('videoModal');
-    const modalVideo = document.getElementById('modalVideo');
+    const modalContent = document.querySelector('.modal-content');
     const closeBtn = document.querySelector('.close-btn');
     const gridItems = document.querySelectorAll('.portfolio-section .grid-item');
+    
+    // open the modal and play the video
+    function openModal(videoUID) {
+        const customerId = 'pjcim1po4vrrcwsx'; 
+        const videoSrc = `https://customer-${customerId}.cloudflarestream.com/${videoUID}/iframe?autoplay=true`;
+        
+        const iframe = document.createElement('iframe');
+        iframe.setAttribute('src', videoSrc);
+        iframe.setAttribute('allow', 'accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;');
+        iframe.setAttribute('allowfullscreen', 'true');
+        iframe.setAttribute('style', 'border: none; width: 100%; height: 100%;');
 
-    // Open modal function
-    function openModal(videoSrc) {
-        // Set source and force load before playing video
-        modalVideo.src = videoSrc;
-        modalVideo.load(); 
+        modalContent.innerHTML = '';
+        modalContent.appendChild(iframe);
+        
         modal.style.display = 'block';
-        
-        modalVideo.play().catch(error => {
-            console.error("Modal video play failed:", error);
-        });
-        
         document.body.style.overflow = 'hidden';
     }
 
-    // Function to close the modal and stop video
     function closeModal() {
-        modalVideo.pause();
-        modalVideo.currentTime = 0;
-        // Clearing the source to release the file from memory
-        modalVideo.src = ''; 
-        modal.style.display = 'none';
+        modalContent.innerHTML = ''; 
         
+        modal.style.display = 'none';
         document.body.style.overflow = ''; 
     }
 
-    // Add click listener to each grid item
+    // click listener added to each grid item
     gridItems.forEach(item => {
         item.addEventListener('click', () => {
-            const videoSrc = item.getAttribute('data-video');
-            if (videoSrc) {
-                openModal(videoSrc);
+            const videoUID = item.getAttribute('data-video');
+            if (videoUID) {
+                openModal(videoUID);
             }
         });
     });
 
-    // Close modal via the 'X' button
+    // close modal with x button
     closeBtn.addEventListener('click', closeModal);
 
-    // Close modal by clicking outside the content
+    // close modal by clicking outside the content borders
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             closeModal();

@@ -1,4 +1,4 @@
-/* Basic Reset and Global Styles */
+/* global styles */
 * {
     margin: 0;
     padding: 0;
@@ -19,7 +19,7 @@ a {
     color: inherit;
 }
 
-/* Header and navigation */
+/* header and navigation section */
 header {
     position: fixed;
     top: 0;
@@ -40,7 +40,7 @@ nav ul {
     font-weight: 500;
 }
 
-/* Hero section */
+/* hero section */
 .hero-section {
     position: relative;
     height: 100vh;
@@ -117,8 +117,9 @@ nav ul {
 }
 
 .video-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    grid-auto-rows: 30vh; 
     width: 100%;
     font-size: 0; 
 }
@@ -127,6 +128,7 @@ nav ul {
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    display: block; 
 }
 
 .grid-item .thumbnail {
@@ -155,20 +157,19 @@ nav ul {
     pointer-events: none;
 }
 
-/* Grid item sizes */
 .full-width {
-    width: 100%;
-    height: 50vh; 
+    grid-column: span 4;
+    grid-row: span 2;
 }
 
 .half-width {
-    width: 50%;
-    height: 40vh;
+    grid-column: span 2;
+    grid-row: span 1;
 }
 
 .quarter-width {
-    width: 25%;
-    height: 30vh;
+    grid-column: span 1;
+    grid-row: span 1;
 }
 
 
@@ -314,7 +315,6 @@ footer {
 }
 
 
-/* Modal and lightbox styling */
 .modal {
     display: none; 
     position: fixed; 
@@ -339,11 +339,6 @@ footer {
     max-height: 90vh;
 }
 
-#modalVideo {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
 
 .close-btn {
     position: absolute;
@@ -363,7 +358,6 @@ footer {
 }
 
 
-/* FAQ page */
 
 .faq-section {
     background-color: #fff;
@@ -373,7 +367,7 @@ footer {
 
 .faq-hero {
     position: relative;
-    height: 40vh;
+    height: 50vh;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -501,10 +495,14 @@ footer {
 }
 
 @media (max-width: 500px) {
-    .full-width, .half-width, .quarter-width {
-        width: 100%;
-        height: 30vh;
+    .video-grid {
+        grid-auto-rows: 25vh;
     }
+    .full-width, .half-width, .quarter-width {
+        grid-column: span 4;
+        grid-row: span 1;
+    }
+
     nav ul {
         gap: 10px;
     }

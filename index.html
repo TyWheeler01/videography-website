@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Wedding Videography</title>
+    <title>Ty Wheeler Wedding Videography</title>
     <link rel="icon" href="assets/img/favicon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
 
@@ -24,7 +25,7 @@
 
     <section id="home" class="hero-section">
         <video id="hero-video" autoplay loop muted playsinline>
-            <source src="assets/video/herovideo.mp4" type="video/mp4">
+            <source src="https://customer-pjcim1po4vrrcwsx.cloudflarestream.com/95e276f8c453c7f0d3d7052515b0d20d/manifest/video.m3u8" type="application/x-mpegURL">
             Your browser does not support the video tag.
         </video>
         <div class="hero-content">
@@ -41,48 +42,49 @@
 
     <section id="portfolio" class="portfolio-section">
         <div class="video-grid">
+
+            <div class="grid-item full-width" data-video="1a280ac0620521ddef56b3040d3bfc51" data-type="stream">
+                <img src="assets/covers/DemoReel.png" alt="Demo reel" class="thumbnail" loading="lazy">
+                 <div class="play-icon"><i class="fas fa-play"></i></div>
+            </div>
             
-            <div class="grid-item half-width" data-video="assets/video/Ashley_Seth.mp4">
+            <div class="grid-item half-width" data-video="ba6d535c278d821596748ca5f8a8d0b5" data-type="stream">
                 <img src="assets/covers/Ashley & Seth cover.png" alt="Ashley & Seth" class="thumbnail" loading="lazy">
                 <div class="play-icon"><i class="fas fa-play"></i></div>
             </div>
             
-            <div class="grid-item half-width" data-video="assets/video/Brittney_Dennis.mp4">
+            <div class="grid-item half-width" data-video="1dba41bbe80c5e49db7af304bc382e5c" data-type="stream">
                 <img src="assets/covers/Brittney & Dennis cover.png" alt="Brittney & Dennis" class="thumbnail" loading="lazy">
                  <div class="play-icon"><i class="fas fa-play"></i></div>
             </div>
             
-            <div class="grid-item quarter-width" data-video="assets/video/Janessa_Sean.mp4">
+            <div class="grid-item half-width" data-video="06a0d9bbb762193a1f44bd0a22a9cc73" data-type="stream">
                 <img src="assets/covers/Janessa & Sean cover.png" alt="Janessa & Sean" class="thumbnail" loading="lazy">
                  <div class="play-icon"><i class="fas fa-play"></i></div>
             </div>
             
-            <div class="grid-item quarter-width" data-video="assets/video/Jenny_Arin.mp4">
+            <div class="grid-item half-width" data-video="bd91eeb8f99739d3db86c5dbaf87d3b9" data-type="stream">
                 <img src="assets/covers/Jenny & Arin cover.png" alt="Jenny & Arin" class="thumbnail" loading="lazy">
                  <div class="play-icon"><i class="fas fa-play"></i></div>
             </div>
             
-            <div class="grid-item quarter-width" data-video="assets/video/Justin_Vanessa.mp4">
-                <img src="assets/covers/Justin & Vanessa cover.png" alt="Justin & Vanessa" class="thumbnail" loading="lazy">
-                 <div class="play-icon"><i class="fas fa-play"></i></div>
-            </div>
 
-             <div class="grid-item full-width" data-video="assets/video/Mike_Leah.mp4">
+             <div class="grid-item half-width" data-video="da6d9b20ef4e63162ebec7e55fcbfb1a" data-type="stream">
                 <img src="assets/covers/Mike & Leah cover.png" alt="Mike & Leah" class="thumbnail" loading="lazy">
                  <div class="play-icon"><i class="fas fa-play"></i></div>
             </div>
-            
-            <div class="grid-item half-width" data-video="assets/video/Nicole_Chris.mp4">
-                <img src="assets/covers/Nicole & Chris cover.png" alt="Nicole & Chris" class="thumbnail" loading="lazy">
+
+            <div class="grid-item half-width" data-video="8904606869b52f39b83a535ad08ac85a" data-type="stream">
+                <img src="assets/covers/Emily & Matthew cover.png" alt="Nicole & Chris" class="thumbnail" loading="lazy">
                  <div class="play-icon"><i class="fas fa-play"></i></div>
             </div>
 
-            <div class="grid-item half-width" data-video="assets/video/Sarah_Eric.mp4">
-                <img src="assets/covers/Sarah & Eric cover.png" alt="Nicole & Chris" class="thumbnail" loading="lazy">
+            <div class="grid-item half-width" data-video="3f02fe2c698d5a13a41edb304f08a736" data-type="stream">
+                <img src="assets/covers/Sarah & Eric cover.png" alt="Sarah & Eric" class="thumbnail" loading="lazy">
                  <div class="play-icon"><i class="fas fa-play"></i></div>
             </div>
             
-            <div class="grid-item half-width" data-video="assets/video/Olivia_Patrick.mp4">
+            <div class="grid-item half-width" data-video="80a8bd3d3ca8f689557ec17e3d73eeb1" data-type="stream">
                 <img src="assets/covers/Olivia & Patrick cover.png" alt="Olivia & Patrick" class="thumbnail" loading="lazy">
                  <div class="play-icon"><i class="fas fa-play"></i></div>
             </div>
@@ -107,7 +109,7 @@
                 <div class="contact-info-text">
                     <p>Tell me about your big day and we'll work together to tell your one of a kind love story. You'll hear back from me within a day of initial contact.</p>
                 </div>
-                <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
+                <form class="contact-form" action="https://formspree.io/f/mzzjyjky" method="POST">
                     <div class="form-row">
                         <div class="form-group half">
                             <label for="firstName">First Name*</label>
@@ -157,8 +159,7 @@
     <div id="videoModal" class="modal">
         <span class="close-btn">&times;</span>
         <div class="modal-content">
-            <video id="modalVideo" controls playsinline></video>
-        </div>
+            </div>
     </div>
 
     <script src="script.js"></script>
