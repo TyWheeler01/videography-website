@@ -333,8 +333,8 @@ footer {
     left: 50%;
     transform: translate(-50%, -50%);
     
-    max-width: 90%;
-    width: 100%;
+    max-width: 80%;
+    width: 90%;
     height: 0;
     padding-bottom: 56.25%;
     overflow: hidden;
