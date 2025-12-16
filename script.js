@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const videoSrc = source ? source.src : null;
 
         if (videoSrc && videoSrc.includes('.m3u8')) {
-            // Check if hls.js is supported
+            // check if hls.js is supported
             if (window.Hls && Hls.isSupported()) {
                 const hls = new Hls();
                 hls.loadSource(videoSrc);

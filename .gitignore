@@ -1,6 +1,4 @@
-# Ignore all large media files and local caches
 /assets/video/
 
-# Ignore common OS files and development environment files
 .DS_Store
 Thumbs.db
