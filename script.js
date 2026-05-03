@@ -1,87 +1,129 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
+    // Header scroll effect
+    const header = document.getElementById('main-header');
+    if (header && !document.body.classList.contains('faq-page')) {
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 60);
+        }, { passive: true });
+    }
+
+    // Scroll reveal (all .reveal, .reveal-left, .reveal-right)
+    const revealSelectors = '.reveal, .reveal-left, .reveal-right';
+    const revealEls = document.querySelectorAll(revealSelectors);
+
+    const revealObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.08,
+        rootMargin: '0px 0px -48px 0px'
+    });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // ─── Roadmap Items (staggered) ───────────────────────────────────
+    const roadmapItems = document.querySelectorAll('.roadmap-item');
+
+    const roadmapObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                // small stagger per item
+                setTimeout(() => {
+                    entry.target.classList.add('active');
+                }, i * 80);
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    roadmapItems.forEach(item => roadmapObserver.observe(item));
+
+    // Hero video — subtle zoom-out on load, HLS support
     const heroVideo = document.getElementById('hero-video');
-    
+
     if (heroVideo) {
         const source = heroVideo.querySelector('source');
         const videoSrc = source ? source.src : null;
 
+        const markLoaded = () => heroVideo.classList.add('loaded');
+        heroVideo.addEventListener('canplay', markLoaded, { once: true });
+
         if (videoSrc && videoSrc.includes('.m3u8')) {
-            // check if hls.js is supported
             if (window.Hls && Hls.isSupported()) {
-                const hls = new Hls();
+                const hls = new Hls({ startLevel: -1 });
                 hls.loadSource(videoSrc);
                 hls.attachMedia(heroVideo);
-                hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    heroVideo.play().catch(error => {
-                        console.warn("Hero HLS video autoplay failed initially:", error.message);
-                    });
+                hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                    heroVideo.play().catch(() => {});
                 });
             } else if (heroVideo.canPlayType('application/vnd.apple.mpegurl')) {
-                // native HLS playback
                 heroVideo.src = videoSrc;
-                heroVideo.play().catch(error => {
-                    console.warn("Hero native HLS video autoplay failed initially:", error.message);
-                });
-            } else {
-                console.error("HLS is not supported on this browser.");
+                heroVideo.play().catch(() => {});
             }
         } else if (heroVideo) {
-            // fallback for non-HLS video
-             heroVideo.play().catch(error => {
-                console.warn("Hero MP4 video autoplay failed initially:", error.message);
-            });
+            heroVideo.play().catch(() => {});
         }
     }
 
+    // FAQ Hero image zoom on load
+    const faqHeroImg = document.getElementById('faqHeroImg');
+    if (faqHeroImg) {
+        if (faqHeroImg.complete) {
+            faqHeroImg.classList.add('loaded');
+        } else {
+            faqHeroImg.addEventListener('load', () => faqHeroImg.classList.add('loaded'));
+        }
+    }
 
-    const modal = document.getElementById('videoModal');
-    const modalContent = document.querySelector('.modal-content');
-    const closeBtn = document.querySelector('.close-btn');
-    const gridItems = document.querySelectorAll('.portfolio-section .grid-item');
-    
-    // open the modal and play the video
+    // Portfolio modal
+    const modal       = document.getElementById('videoModal');
+    const modalContent = modal ? modal.querySelector('.modal-content') : null;
+    const closeBtn    = modal ? modal.querySelector('.close-btn') : null;
+    const gridItems   = document.querySelectorAll('.portfolio-section .grid-item');
+
     function openModal(videoUID) {
-        const customerId = 'pjcim1po4vrrcwsx'; 
-        const videoSrc = `https://customer-${customerId}.cloudflarestream.com/${videoUID}/iframe?autoplay=true`;
-        
+        if (!modal || !modalContent) return;
+        const src = `https://customer-pjcim1po4vrrcwsx.cloudflarestream.com/${videoUID}/iframe?autoplay=true`;
         const iframe = document.createElement('iframe');
-        iframe.setAttribute('src', videoSrc);
+        iframe.src = src;
         iframe.setAttribute('allow', 'accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;');
         iframe.setAttribute('allowfullscreen', 'true');
-        iframe.setAttribute('style', 'border: none; width: 100%; height: 100%;');
-
+        iframe.style.cssText = 'border:none; width:100%; height:100%; border-radius:2px;';
         modalContent.innerHTML = '';
         modalContent.appendChild(iframe);
-        
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
-        modalContent.innerHTML = ''; 
-        
+        if (!modal || !modalContent) return;
+        modalContent.innerHTML = '';
         modal.style.display = 'none';
-        document.body.style.overflow = ''; 
+        document.body.style.overflow = '';
     }
 
-    // click listener added to each grid item
     gridItems.forEach(item => {
         item.addEventListener('click', () => {
-            const videoUID = item.getAttribute('data-video');
-            if (videoUID) {
-                openModal(videoUID);
-            }
+            const uid = item.getAttribute('data-video');
+            if (uid) openModal(uid);
         });
     });
 
-    // close modal with x button
-    closeBtn.addEventListener('click', closeModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
-    // close modal by clicking outside the content borders
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
+    if (modal) {
+        modal.addEventListener('click', e => {
+            if (e.target === modal) closeModal();
+        });
+    }
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && modal && modal.style.display === 'block') closeModal();
     });
+
 });
