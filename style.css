@@ -808,7 +808,40 @@ footer {
 }
 
 .social-links a:hover {
-    color: var(--lavender-lt);
+    color: rgba(12, 18, 30, 0.97);
+}
+
+.contact-direct-links {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-direct-links p {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(12, 18, 30, 0.97);
+    opacity: 0.5;
+}
+
+.contact-direct-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: rgba(12, 18, 30, 0.97);
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.contact-direct-item:hover {
+    opacity: 0.7;
+}
+
+.contact-direct-item i {
+    font-size: 1rem;
 }
 
 /* Modal */
